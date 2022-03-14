@@ -20,6 +20,10 @@ with open('expresiones.txt') as f:
         lines.append(line_strip)
 
 
+def addToTable(string, type):
+    tmpList = [string, type]
+    table.append(tmpList)
+
 def checkingOperators(string, j):
     
     tokenType = ""
@@ -49,8 +53,7 @@ def checkingOperators(string, j):
         out += "*"
         tokenType = "Multiplicacion"
     
-    tmpList = [out, tokenType]
-    table.append(tmpList)
+    addToTable(out, tokenType)
     
     return j
    
@@ -91,8 +94,8 @@ def checkingNumbers(string, j):
 
     
     """ print(out) """
-    tmpList = [out, tokenType]
-    table.append(tmpList)
+    addToTable(out, tokenType)
+
     return j
 
 def checkingParethesis(string, j):
@@ -106,8 +109,8 @@ def checkingParethesis(string, j):
         out += ")"
         tokenType = "Parentesis de cierre"
     
-    tmpList = [out, tokenType]
-    table.append(tmpList)
+    addToTable(out, tokenType)
+
     return j
 
 def checkingVariables(string, j):
@@ -123,8 +126,7 @@ def checkingVariables(string, j):
     
     j -= 1
 
-    tmpList = [out, tokenType]
-    table.append(tmpList)
+    addToTable(out, tokenType)
     return j
 
 
