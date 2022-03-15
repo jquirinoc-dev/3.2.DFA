@@ -11,16 +11,18 @@ table = [["Token", "Type"]]
 
 lines = []
 
-with open('expresiones.txt') as f:
-    newline_break = ""
-    for readline in f:
-        line_strip = readline.strip()
-        line_strip = line_strip.replace(" ", "")
-        line_strip = line_strip.lower()
-        lines.append(line_strip)
+def openFile(textFile):
 
+    with open(textFile) as f:
+        newline_break = ""
+        for readline in f:
+            line_strip = readline.strip()
+            line_strip = line_strip.replace(" ", "")
+            line_strip = line_strip.lower()
+            lines.append(line_strip)
 
 def addToTable(string, type):
+    
     tmpList = [string, type]
     table.append(tmpList)
 
@@ -153,8 +155,9 @@ def checkingVariables(string, j):
     return j
 
 
-
 def main():
+
+    openFile("expresiones.txt")
 
     for i in range(len(lines)):
         j = 0
