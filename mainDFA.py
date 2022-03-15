@@ -68,6 +68,11 @@ def checkingNumbers(string, j):
         out += string[j]
         j += 1
     
+    if j <= len(string) - 1 and string[j] in letras and string[j] != "e":
+        out += string[j]
+        tokenType = "Error en la expresion"
+        j += 1
+    
 
     if j < len(string) - 1 and string[j] == punto:
         tokenType = "Real"
@@ -78,17 +83,35 @@ def checkingNumbers(string, j):
             out += string[j]
             j += 1
         
+
+
     if j < len(string) - 1 and string[j] == "e":
         out += string[j]
         j += 1
+
+        if j <= len(string) - 1 and string[j] in letras:
+            out += string[j]
+            tokenType = "Error en la expresion"
+            j += 1
 
         if j < len(string) - 1 and string[j] == "-":
             out += "-"
             j += 1
 
+        if j <= len(string) - 1 and string[j] in letras:
+            out += string[j]
+            tokenType = "Error en la expresion"
+            j += 1
+
         while j <= len(string) - 1 and string[j] in numeros:
             out += string[j]
             j += 1
+
+        if j <= len(string) - 1 and string[j] in letras:
+            out += string[j]
+            tokenType = "Error en la expresion"
+            j += 1
+
     j-= 1
             
 
@@ -120,7 +143,7 @@ def checkingVariables(string, j):
     out = string[j]
     j += 1
     
-    while j <= len(string) - 1 and string[j] in letras or string[j] in numeros:
+    while j < len(string) and (string[j] in letras or string[j] in numeros):
         out += string[j]
         j += 1
     
@@ -149,7 +172,7 @@ def main():
                     j = checkingOperators(lines[i], j)
 
             elif lines[i][j] in numeros:
-                j = checkingNumbers(lines[i], j)
+                j = checkingNumbers(lines[i], j)                
 
             elif lines[i][j] in parentesis:
                 j = checkingParethesis(lines[i], j)
